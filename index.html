@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Vakantiefeest</title>
+	<link rel="stylesheet" type="text/css" href="Vakantiefeest.css">
+	<script type="text/JavaScript" src="Vakantiefeest.js"></script>
+    
+  <style>
+      @media only screen 
+      and (min-device-width: 320px) 
+      and (max-device-width: 480px)
+      and (-webkit-min-device-pixel-ratio: 2) {
+      
+      body{
+        margin-right: 7.5%;
+        margin-left: 2.5%;
+      }
+      h1{
+        font-size: 100px;
+        text-align: center;
+      }
+      .mainArticleLeftClass {
+        float: none;
+        margin: 2%;
+        width: 98%;
+      }
+      .mainArticleRightClass {
+        float: none;
+        margin: 2%;
+        width: 98%;
+      }
+    }
+    @media only screen and (max-width: 950px) {
+      body{
+        margin-right: 7.5%;
+        margin-left: 2.5%;
+      }
+      h1{
+        font-size: 80px;
+        text-align: center;
+      }
+      .mainArticleLeftClass{
+        float: none;
+        margin: 2%;
+        width: 98%;
+      }
+      .mainArticleRightClass{
+        float: none;
+        margin: 2%;
+        width: 98%;
+      }
+    }
+  </style>
+</head>
+<body id = "body">
+    <head>
+    <div class="headerClass">
+      <h1>Vakantiefeest</h1>
+    </div>
+	</head>
+	
+  <nav>
+    <div class="navClass">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="vakantieaanbod.html">Vakantieaanbod</a></li>
+        <li><a href="party.html">Party</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <h2>De aanbiedingen van de dag!</h2>
+    <div class="mainClass">
+      <article class="mainArticleLeftClass" style="background-image: url(hooglandin.png)">
+
+      </article>
+      <article class="mainArticleRightClass" style="background-image: url(Bergaan.png)">
+      </article>
+    </div>
+  </main>
+    
+  <canvas id="canvas" width = "1760" height= "300"></canvas>
+    
+  <footer>
+    <div class="footerClass">
+      <p style="color:black">Made by Doron & Niek</p>
+    </div>
+  </footer>
+  
+    <script type="text/javascript">
+        main();
+    </script>
+</body>
+</html>
