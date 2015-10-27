@@ -32,10 +32,10 @@ $( document ).ready(function() {
 
 function login() {
 	$.ajax({
-			type: "GET",
-			dataType: "json",
-			url: "notflix/api/users/gettoken",
-	
+			type: "POST",
+			url: "http://localhost:8080/notflix31/api/users/getToken",
+			data: "nickname=memer&wachtwoord=987",
+		
 	}).fail(function(jqXHR,	textStatus) {	
   	alert("API Request failed: " + textStatus);	
 	}).done(function(data) {  	
