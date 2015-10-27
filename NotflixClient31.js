@@ -30,6 +30,7 @@ $( document ).ready(function() {
 	  });
 });
 
+/*
 function login( {
 	$.ajax({
 			type: "GET",
@@ -43,3 +44,4 @@ function login( {
 		alert("succesvol ingelogt");
    		});
 })
+*/
