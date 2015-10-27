@@ -30,16 +30,17 @@ $( document ).ready(function() {
 	  });
 });
 
-function login( {
+function login() {
 	$.ajax({
 			type: "GET",
 			dataType: "json",
 			url: "notflix/api/users/gettoken",
 	
-	}).fail(funcNon(jqXHR,	textStatus) {	
+	}).fail(function(jqXHR,	textStatus) {	
   	alert("API Request failed: " + textStatus);	
-			}).done(funcNon(data) {  	
+	}).done(function(data) {  	
   	//Do something with the data
 		alert("succesvol ingelogt");
-   		});
-})
+  });
+	return false;
+}
