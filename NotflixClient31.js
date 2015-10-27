@@ -30,18 +30,19 @@ $( document ).ready(function() {
 	  });
 });
 
-/*
-function login( {
+function login() {
 	$.ajax({
-			type: "GET",
-			dataType: "json",
-			url: "notflix/api/users/gettoken",
-	
-	}).fail(funcNon(jqXHR,	textStatus) {	
+			type: "POST",
+			url: "http://localhost:8080/notflix31/api/users/getToken",
+			data: "nickname=memer&wachtwoord=987",
+		
+	}).fail(function(jqXHR,	textStatus) {	
   	alert("API Request failed: " + textStatus);	
-			}).done(funcNon(data) {  	
+	}).done(function(data) {  	
   	//Do something with the data
 		alert("succesvol ingelogt");
    		});
 })
-*/
+  });
+	return false;
+}
