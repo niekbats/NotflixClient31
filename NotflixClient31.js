@@ -23,7 +23,7 @@ function getFrontPageMovies(){
 				     url: "http://www.omdbapi.com/?t=" + element.titel + "&y=&plot=short&r=json",
   
 							    success: function(data){       
-							    	$("#movieContainerFront").append('<div class="col-md-4"><img id="imageMovie'+index+'" src="" alt="movie" width="275" height="430">'
+							    	$("#movieContainerFront").append('<div class="col-md-4"><img id="imageMovie'+index+'" src="" alt="movie" width="295" height="440">'
 							    		+'<h2 id="headerMovie'+index+'">Spotlight movie number 1</h2><div style="height: 100px;">'
 							    		+'<p id="descriptionMovie'+index+'">Information about the movie</p></div>'
 							    		+'<form action="details.html" method="GET"><input type="submit" name="titel" value="'+element.titel+'"></form></div>');
@@ -91,7 +91,7 @@ function showAllMovies() {
 					     url: "http://www.omdbapi.com/?t=" + element.titel + "&y=&plot=short&r=json",
 
 							    success: function(data){       
-							    	$("#movieContainer").append('<div class="col-md-4"><img id="imageMovie'+index+'" src="" alt="movie" width="285" height="440">'
+							    	$("#movieContainer").append('<div class="col-md-4"><img id="imageMovie'+index+'" src="" alt="movie" width="295" height="440">'
 							    		+'<h2 id="headerMovie'+index+'">Spotlight movie number 1</h2><div style="height: 100px;">'
 							    		+'<p id="descriptionMovie'+index+'">Information about the movie</p></div>'
 							    		+'<form action="details.html" method="GET"><input type="submit" name="titel" value="'+element.titel+'"></form></div>');
@@ -136,6 +136,38 @@ function showAllUsers() {
 		     }
 		});
 }
+
+function registreer(){
+	window.open ('registreer.html','_self',false)
+}
+
+function registreerUser(){
+	var voornaam = document.getElementById("first_name").value;
+	var tussenvoegsel = document.getElementById("tussenvoegsel").value;
+	var achternaam = document.getElementById("last_name").value;
+	var nickname = document.getElementById("display_name").value;
+	var wachtwoord = document.getElementById("password").value;
+	
+	$.ajax({
+			type: "POST",
+			url: "http://localhost:8080/notflix31/api/users/newUser",
+			data: "voornaam="+voornaam+"&tussenvoegsel="+tussenvoegsel+"&achternaam="+achternaam+"&nickname="+nickname+"&wachtwoord="+wachtwoord,
+		
+	}).fail(function(jqXHR,	textStatus, errorThrown ) {	
+ 		console.log(""+errorThrown);	
+ 		if(errorThrown == "Expectation Failed"){
+	 		$('#beneathFormMessage').empty();
+			$('#beneathFormMessage').append("vul alle velden in (uitzondering tussenvoegsel)");
+		}else{
+	 		$('#beneathFormMessage').empty();
+			$('#beneathFormMessage').append("De volgende nickname bestaat helaas al: <strong>"+nickname+"</strong>");
+		}
+	}).done(function(data) {  	
+		$('#beneathFormMessage').empty();
+		$('#beneathFormMessage').append("succesvol aangemeld met de nickname: <strong>"+nickname+"</strong>");
+   	});
+}
+
 
 
 function login() {

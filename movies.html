@@ -20,6 +20,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="NotflixClient31.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -65,7 +66,9 @@
             <div class="form-group">
               <input type="password" placeholder="Password" class="form-control">
             </div>
-            <button onclick="login()" type="submit" class="btn btn-success">Sign in
+            <button onclick="login(); return false;" type="submit" class="btn btn-success">Sign in
+            </button>
+            <button onclick="registreer(); return false;" type="submit" class="btn btn-success">Registreer
             </button>
           </form>
         </div><!--/.navbar-collapse -->
