@@ -13,21 +13,30 @@ function getFrontPageMovies(){
 
 				$.each(data, function(index, element) {
 				 	++index;
-				 	if(index == 4){
+				 	if(index >= 4){
 				 		return;
 				 	}
-				 	$('.headerMovie'+index).html(element.titel);
-				 	$('.descriptionMovie'+index).html(element.beschrijving);
 
 				 		$.ajax({ 
 				     type: "GET",
 				     dataType: "json",
 				     url: "http://www.omdbapi.com/?t=" + element.titel + "&y=&plot=short&r=json",
+  
+							    success: function(data){       
+							    	$("#movieContainerFront").append('<div class="col-md-4"><img id="imageMovie'+index+'" src="" alt="movie" width="275" height="430">'
+							    		+'<h2 id="headerMovie'+index+'">Spotlight movie number 1</h2><div style="height: 100px;">'
+							    		+'<p id="descriptionMovie'+index+'">Information about the movie</p></div>'
+							    		+'<p><a type="button" class="btn btn-default" id="button'+element.titel.replace(/\ /g, "")+'" role="button">'
+							    		+'View details »</a></p></div>');
+							      	document.getElementById("imageMovie"+index).src = data.Poster;
+							      	$('#headerMovie'+index).html(element.titel);
+					 				$('#descriptionMovie'+index).html(element.beschrijving);
 
-						    success: function(data){       
-
-						      document.getElementById("imageMovie"+index).src = data.Poster;
-					    	}
+					 				$('#button'+ element.titel.replace(/\ /g, "")).click(function(){
+					 					showMovieDetails(element.titel);
+					 				});
+						    	}
+					    	
 				  	});
 			});
 
@@ -36,14 +45,13 @@ function getFrontPageMovies(){
 }
 
 
-function showMovieDetails() {
-	var titel = getName();
+function showMovieDetails(titel) {
 	console.log("titel: "+titel);
 	var newWindow = window.open("details.html");
+	loadDetails(titel);
 }
 
-function loadDetails(){
-	var titel = getName();
+function loadDetails(titel){
 	console.log("titel: "+titel);
 
 		$.ajax({ 
@@ -93,10 +101,18 @@ function showAllMovies() {
 					     url: "http://www.omdbapi.com/?t=" + element.titel + "&y=&plot=short&r=json",
 
 							    success: function(data){       
-							    	$("#movieContainer").append('<div class="col-md-4"><img id="imageMovie'+index+'" src="" alt="movie" width="275" height="430"><h2 id="headerMovie'+index+'">Spotlight movie number 1</h2><div style="height: 100px;"><p id="descriptionMovie'+index+'">Information about the movie</p></div><p><a class="btn btn-default" href="details.html" role="button">View details »</a></p></div>');
+							    	$("#movieContainer").append('<div class="col-md-4"><img id="imageMovie'+index+'" src="" alt="movie" width="275" height="430">'
+							    		+'<h2 id="headerMovie'+index+'">Spotlight movie number 1</h2><div style="height: 100px;">'
+							    		+'<p id="descriptionMovie'+index+'">Information about the movie</p></div>'
+							    		+'<p><a type="button" class="btn btn-default" id="button'+element.titel.replace(/\ /g, "")+'" role="button">'
+							    		+'View details »</a></p></div>');
 							      	document.getElementById("imageMovie"+index).src = data.Poster;
 							      	$('#headerMovie'+index).html(element.titel);
 					 				$('#descriptionMovie'+index).html(element.beschrijving);
+
+					 				$('#button'+ element.titel.replace(/\ /g, "")).click(function(){
+					 					showMovieDetails(element.titel);
+					 				});
 						    	}
 					  	});
 				});
