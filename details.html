@@ -41,7 +41,7 @@
           </button>
           <a class="navbar-brand" href="index.html">Notflix 31</a>
           <ul class="nav navbar-nav">
-            <li><a href="#movies">Movies</a></li>
+            <li><a href="movies.html">Movies</a></li>
             <li><a href="users.html">Users</a></li>
             <li><a href="#contact">Ratings</a></li>
             <li class="dropdown">
@@ -83,17 +83,17 @@
 
       <div class="row">
         <div class="col-md-4">
-          <img id="imageMovie1" src="" alt="movie">
+          <img id="detailsImageMovie" src="" alt="movie">
         </div>
 
       <footer>
-          <h2 class="headerMovie1">Spotlight movie number 1</h2>
-          <h3 class="descriptionMovie1">Information about the movie</h3>
-          <h3 class="regiseurMovie1">Regiseur</h3>
-          <h3 class="imdbCodeMovie1">ImdbCode : 0</h3>
-          <h3 class="lengteMinMovie1">Lengte in minuten : 0</h3>
-          <h3 class="publicatieDatumMovie1">Uitgebracht op: 01-01-2000</h3>
-          <h3 class="ratingMovie1">Imdb rating : 0.0</h3>
+          <h2 id="detailsTitel">Spotlight movie number 1</h2>
+          <h3 id="detailsBeschrijving">Information about the movie</h3>
+          <h3 id="detailsRegiseur">Regiseur</h3>
+          <h3 id="detailsImdbCode">ImdbCode : 0</h3>
+          <h3 id="detailsLengteMin">Lengte in minuten : 0</h3>
+          <h3 id="detailsPublicatieDatum">Uitgebracht op: 01-01-2000</h3>
+          <h3 id="detailsAvarageNumber">Imdb rating : 0.0</h3>
       </footer>
     </div> <!-- /container -->
 
@@ -102,11 +102,14 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 
-    <script src="NotflixClient31MovieDetails.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="NotflixClient31.js"></script>
+    <script>
+      loadDetails("The dark knight rises");
+    </script>
 
 </body>
 </html>
