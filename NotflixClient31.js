@@ -26,15 +26,10 @@ function getFrontPageMovies(){
 							    	$("#movieContainerFront").append('<div class="col-md-4"><img id="imageMovie'+index+'" src="" alt="movie" width="275" height="430">'
 							    		+'<h2 id="headerMovie'+index+'">Spotlight movie number 1</h2><div style="height: 100px;">'
 							    		+'<p id="descriptionMovie'+index+'">Information about the movie</p></div>'
-							    		+'<p><a type="button" class="btn btn-default" id="button'+element.titel.replace(/\ /g, "")+'" role="button">'
-							    		+'View details »</a></p></div>');
+							    		+'<form action="details.html" method="GET"><input type="submit" name="titel" value="'+element.titel+'"></form></div>');
 							      	document.getElementById("imageMovie"+index).src = data.Poster;
 							      	$('#headerMovie'+index).html(element.titel);
 					 				$('#descriptionMovie'+index).html(element.beschrijving);
-
-					 				$('#button'+ element.titel.replace(/\ /g, "")).click(function(){
-					 					showMovieDetails(element.titel);
-					 				});
 						    	}
 					    	
 				  	});
@@ -44,14 +39,9 @@ function getFrontPageMovies(){
 	});
 }
 
-
-function showMovieDetails(titel) {
-	console.log("titel: "+titel);
-	var newWindow = window.open("details.html");
-	loadDetails(titel);
-}
-
-function loadDetails(titel){
+function loadDetails(){
+	var fullLocationSearch = window.location.search;
+	var titel = fullLocationSearch.slice(7);
 	console.log("titel: "+titel);
 
 		$.ajax({ 
@@ -101,11 +91,10 @@ function showAllMovies() {
 					     url: "http://www.omdbapi.com/?t=" + element.titel + "&y=&plot=short&r=json",
 
 							    success: function(data){       
-							    	$("#movieContainer").append('<div class="col-md-4"><img id="imageMovie'+index+'" src="" alt="movie" width="275" height="430">'
+							    	$("#movieContainer").append('<div class="col-md-4"><img id="imageMovie'+index+'" src="" alt="movie" width="285" height="440">'
 							    		+'<h2 id="headerMovie'+index+'">Spotlight movie number 1</h2><div style="height: 100px;">'
 							    		+'<p id="descriptionMovie'+index+'">Information about the movie</p></div>'
-							    		+'<p><a type="button" class="btn btn-default" id="button'+element.titel.replace(/\ /g, "")+'" role="button">'
-							    		+'View details »</a></p></div>');
+							    		+'<form action="details.html" method="GET"><input type="submit" name="titel" value="'+element.titel+'"></form></div>');
 							      	document.getElementById("imageMovie"+index).src = data.Poster;
 							      	$('#headerMovie'+index).html(element.titel);
 					 				$('#descriptionMovie'+index).html(element.beschrijving);
@@ -133,11 +122,14 @@ function showAllUsers() {
 					$.each(data, function(index, element) {
 					 	++index;
     
-							    	$("#userContainer").append('<div class="col-md-3" style="border:solid 1px black;margin:1px"><h2 id="headerUser'+index+'">nickname</h2><p id="voornaamUser'+index+'">voornaam</p><p id="tussenvoegselUser'+index+'">tussenvoegsel</p><p id="achternaamUser'+index+'">achternaam</p></div>');
+							    	$("#userContainer").append('<div class="col-md-3" style="border:solid 1px black;margin:1px">'
+							    		+'<h2 id="headerUser'+index+'">nickname</h2><p id="voornaamUser'+index+'">voornaam</p>'
+							    		+'<p id="tussenvoegselUser'+index+'">tussenvoegsel</p>'
+							    		+'<p id="achternaamUser'+index+'">achternaam</p></div>');
 							      	$('#headerUser'+index).html(element.nickname);
-					 				$('#voornaamUser'+index).html("Voornaam: "+element.voornaam);
-					 				$('#tussenvoegselUser'+index).html("Tussenvoegsel: "+element.tussenvoegsel);
-					 				$('#achternaamUser'+index).html("Achternaam: "+element.achternaam);
+					 				$('#voornaamUser'+index).html("<strong>Voornaam: </strong>"+element.voornaam);
+					 				$('#tussenvoegselUser'+index).html("<strong>Tussenvoegsel: </strong>"+element.tussenvoegsel);
+					 				$('#achternaamUser'+index).html("<strong>Achternaam: </strong>"+element.achternaam);
 						    	
 				});
 
