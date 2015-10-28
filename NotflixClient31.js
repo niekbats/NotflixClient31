@@ -93,7 +93,7 @@ function showAllMovies() {
 					     url: "http://www.omdbapi.com/?t=" + element.titel + "&y=&plot=short&r=json",
 
 							    success: function(data){       
-							    	$("#movieContainer").append('<div class="col-md-4"><img id="imageMovie'+index+'" src="" alt="movie" width="275" height="430"><h2 height="200" id="headerMovie'+index+'">Spotlight movie number 1</h2><p height="300" id="descriptionMovie'+index+'">Information about the movie</p><p><a class="btn btn-default" href="details.html" role="button">View details »</a></p></div>');
+							    	$("#movieContainer").append('<div class="col-md-4"><img id="imageMovie'+index+'" src="" alt="movie" width="275" height="430"><h2 id="headerMovie'+index+'">Spotlight movie number 1</h2><div style="height: 100px;"><p id="descriptionMovie'+index+'">Information about the movie</p></div><p><a class="btn btn-default" href="details.html" role="button">View details »</a></p></div>');
 							      	document.getElementById("imageMovie"+index).src = data.Poster;
 							      	$('#headerMovie'+index).html(element.titel);
 					 				$('#descriptionMovie'+index).html(element.beschrijving);
@@ -117,7 +117,7 @@ function showAllUsers() {
 					$.each(data, function(index, element) {
 					 	++index;
     
-							    	$("#userContainer").append('<div class="col-md-4"><h2 id="headerUser'+index+'">nickname</h2><p id="voornaamUser'+index+'">voornaam</p><p id="tussenvoegselUser'+index+'">tussenvoegsel</p><p id="achternaamUser'+index+'">achternaam</p><a class="btn btn-default" href="details.html" role="button">View details »</a></p></div>');
+							    	$("#userContainer").append('<div class="col-md-3" style="border:solid 1px black;margin:1px"><h2 id="headerUser'+index+'">nickname</h2><p id="voornaamUser'+index+'">voornaam</p><p id="tussenvoegselUser'+index+'">tussenvoegsel</p><p id="achternaamUser'+index+'">achternaam</p></div>');
 							      	$('#headerUser'+index).html(element.nickname);
 					 				$('#voornaamUser'+index).html("Voornaam: "+element.voornaam);
 					 				$('#tussenvoegselUser'+index).html("Tussenvoegsel: "+element.tussenvoegsel);
