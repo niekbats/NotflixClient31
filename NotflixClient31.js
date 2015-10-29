@@ -1,7 +1,12 @@
 $( document ).ready(function() {
   console.log( "document loaded" );
 
+  //For testing!
+  //localStorage.clear();
+
   if(localStorage.getItem("token") != null){
+  	console.log("nickname: " + localStorage.getItem("nickname"));
+	console.log("token: " + localStorage.getItem("token"));
   	$('#navbar').empty();
 	$('#navbar').append("Ingelogd als: "+localStorage.getItem("nickname"));
   }
@@ -155,18 +160,20 @@ function showAllRatings(){
   }
   
 	$.ajax({ 
-		type: "POST",
+		type: "GET",
 		dataType: "json",
 		url: "http://localhost:8080/notflix31/api/ratings/getRating",
+		//token: ""+localStorage.getItem("token"),
 		headers: {"token": localStorage.getItem("token")},
+
 		//beforeSend: function(xhr){xhr.setRequestHeader('token', localStorage.getItem("token"))},
 
 	     	success: function(data){        
 	       	console.log(data);
 
-				$.each(data, function(index, element) {
-					++index;	    	
-				});
+				//$.each(data, function(index, element) {
+				//	++index;	    	
+				//});
 
 	     	}
 		});
@@ -219,6 +226,8 @@ function login() {
 	}).done(function(data) {  	
 		localStorage.setItem("token", data.token);
 		localStorage.setItem("nickname", nickname);
+		console.log("nickname: " + localStorage.getItem("nickname"));
+		console.log("token: " + localStorage.getItem("token"));
 
 		$('#navbar').empty();
 		$('#navbar').append("Ingelogd als: "+localStorage.getItem("nickname"));
