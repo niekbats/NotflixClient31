@@ -31,8 +31,7 @@
   </head>
 <body>
 
-
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+   <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -45,29 +44,20 @@
           <ul class="nav navbar-nav">
             <li><a href="movies.html">Movies</a></li>
             <li><a href="users.html">Users</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
+            <li><a href="ratings.html">Ratings</a></li>
           </ul>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
+          <form class="navbar-form navbar-right" method="POST" action="javascript:login()">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input id="fnickname" type="nickname" class="form-control" name="nickname" value="" placeholder="Nickname">                                        
             </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input id="fpassword" type="password" class="form-control" name="password" value="" placeholder="Password">                                        
             </div>
-            <button onclick="login(); return false;" type="submit" class="btn btn-success">Sign in
+            <button type="submit" class="btn btn-success">Sign in
             </button>
             <button onclick="registreer(); return false;" type="submit" class="btn btn-success">Registreer
             </button>

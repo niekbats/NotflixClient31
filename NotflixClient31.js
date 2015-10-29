@@ -1,5 +1,10 @@
 $( document ).ready(function() {
   console.log( "document loaded" );
+
+  if(localStorage.getItem("token") != null){
+  	$('#navbar').empty();
+	$('#navbar').append("Ingelogd als: "+localStorage.getItem("nickname"));
+  }
 });
 
 function getFrontPageMovies(){
@@ -12,6 +17,10 @@ function getFrontPageMovies(){
 	       	console.log(data);
 
 				$.each(data, function(index, element) {
+					var length = data.length;
+					var randomNumber = parseInt(Math.random() * length, 10);
+					var object = data[randomNumber];
+					console.log(object.titel);
 				 	++index;
 				 	if(index >= 4){
 				 		return;
@@ -20,16 +29,16 @@ function getFrontPageMovies(){
 				 		$.ajax({ 
 				     type: "GET",
 				     dataType: "json",
-				     url: "http://www.omdbapi.com/?t=" + element.titel + "&y=&plot=short&r=json",
+				     url: "http://www.omdbapi.com/?t=" + object.titel + "&y=&plot=short&r=json",
   
 							    success: function(data){       
 							    	$("#movieContainerFront").append('<div class="col-md-4"><img id="imageMovie'+index+'" src="" alt="movie" width="295" height="440">'
 							    		+'<h2 id="headerMovie'+index+'">Spotlight movie number 1</h2><div style="height: 100px;">'
 							    		+'<p id="descriptionMovie'+index+'">Information about the movie</p></div>'
-							    		+'<form action="details.html" method="GET"><input type="submit" name="titel" value="'+element.titel+'"></form></div>');
+							    		+'<form action="details.html" method="GET"><input type="submit" name="titel" value="'+object.titel+'"></form></div>');
 							      	document.getElementById("imageMovie"+index).src = data.Poster;
-							      	$('#headerMovie'+index).html(element.titel);
-					 				$('#descriptionMovie'+index).html(element.beschrijving);
+							      	$('#headerMovie'+index).html(object.titel);
+					 				$('#descriptionMovie'+index).html(object.beschrijving);
 						    	}
 					    	
 				  	});
@@ -137,6 +146,32 @@ function showAllUsers() {
 		});
 }
 
+function showAllRatings(){
+
+  if(localStorage.getItem("token") == null){
+  	$('#ratingsContainer').empty();
+	$('#ratingsContainer').append("U moet eerst inloggen voordat u ratings kunt bekijken!");
+	return;
+  }
+  
+	$.ajax({ 
+		type: "POST",
+		dataType: "json",
+		url: "http://localhost:8080/notflix31/api/ratings/getRating",
+		headers: {"token": localStorage.getItem("token")},
+		//beforeSend: function(xhr){xhr.setRequestHeader('token', localStorage.getItem("token"))},
+
+	     	success: function(data){        
+	       	console.log(data);
+
+				$.each(data, function(index, element) {
+					++index;	    	
+				});
+
+	     	}
+		});
+}
+
 function registreer(){
 	window.open ('registreer.html','_self',false)
 }
@@ -171,16 +206,21 @@ function registreerUser(){
 
 
 function login() {
+	var nickname = document.getElementById("fnickname").value;
+	var wachtwoord = document.getElementById("fpassword").value;
+
 	$.ajax({
-			type: "POST",
-			url: "http://localhost:8080/notflix31/api/users/getToken",
-			data: "nickname=memer&wachtwoord=987",
+		type: "POST",
+		url: "http://localhost:8080/notflix31/api/users/getToken",
+		data: "nickname="+nickname+"&wachtwoord="+wachtwoord,
 		
-	}).fail(function(jqXHR,	textStatus) {	
-  	alert("API Request failed: " + textStatus);	
+	}).fail(function(jqXHR,	textStatus, errorThrown) {	
+  		console.log("API Request failed: " + errorThrown);	
 	}).done(function(data) {  	
-  	//Do something with the data
-		alert("succesvol ingelogt");
+		localStorage.setItem("token", data.token);
+		localStorage.setItem("nickname", nickname);
+
+		$('#navbar').empty();
+		$('#navbar').append("Ingelogd als: "+localStorage.getItem("nickname"));
    	});
-	return false;
 }

@@ -3,3 +3,17 @@
 	margin-top: 20px;
 	font-family: Tahoma;
 }
+
+#navbar {
+	color: white;
+}
+
+#randomMovies{
+	font-family: Tahoma;
+	margin-bottom: 15px;
+}
+
+#ratingsContainer{
+	font-size: 30px;
+	font-family: Tahoma;	
+}
