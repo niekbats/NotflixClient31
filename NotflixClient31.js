@@ -210,8 +210,6 @@ function registreerUser(){
    	});
 }
 
-
-
 function login() {
 	var nickname = document.getElementById("fnickname").value;
 	var wachtwoord = document.getElementById("fpassword").value;
